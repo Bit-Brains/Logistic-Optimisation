@@ -4,13 +4,17 @@
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
+require('dotenv').config()
+
 generator client {
   provider = "prisma-client-js"
 }
 
+const db_url = process.env.DATABASE_URL;
+
 datasource db {
   provider = "postgresql"
-  url      = "postgresql://Logistic%20Optimisation_owner:v3RfrcZpo9hA@ep-frosty-block-a599hp4t.us-east-2.aws.neon.tech/LogisticOptimization?sslmode=require"
+  url      = db_url
 }
 
 model Suppliers {
