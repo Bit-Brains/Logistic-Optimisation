@@ -1,0 +1,117 @@
+/* Apply background to the about-page class */
+.about-page {
+  min-height: 100vh; /* Minimum height instead of full height */
+  background: linear-gradient(180deg, #f2f3ae, #98b36322 60%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px; /* Added padding for better mobile responsiveness */
+  box-sizing: border-box;
+  position: relative; /* Added for proper stacking context */
+}
+
+/* Container for content with padding and max-width */
+.about-content {
+  max-width: 1200px;
+  width: 100%;
+  padding: 50px 30px;
+  box-sizing: border-box; /* Ensures padding is included in the width */
+  z-index: 10; /* Ensures the content is clickable */
+}
+
+/* Heading styles */
+.about-content h1 {
+  font-size: 42px;
+  color: #090909;
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+/* Section styles */
+.about-section {
+  margin-bottom: 40px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 10; /* Ensures the section is clickable */
+}
+
+/* Subheading styles within section */
+.about-section h2 {
+  font-size: 28px;
+  color: #171717;
+  margin-bottom: 15px;
+  font-weight: 600;
+  border-bottom: 2px solid #ff4141;
+  padding-bottom: 10px;
+}
+
+/* Paragraph and unordered list styles within section */
+.about-section p,
+.about-section ul {
+  color: #333;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* Unordered list styles within section */
+.about-section ul {
+  list-style-type: disc;
+  margin-left: 20px;
+}
+
+/* List item styles within unordered list */
+.about-section li {
+  margin-bottom: 10px;
+}
+
+/* Contact section styles */
+.about-contact {
+  text-align: center;
+  margin-top: 40px;
+  z-index: 10; /* Ensures the contact section is clickable */
+}
+
+/* Paragraph styles within contact section */
+.about-contact p {
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+/* Link styles within contact section */
+.about-contact a {
+  color: #ff4141;
+  text-decoration: none;
+}
+
+.about-contact a:hover {
+  text-decoration: underline;
+}
+
+/* Media queries for better responsiveness */
+@media (max-width: 768px) {
+  .about-content {
+    padding: 30px 20px;
+  }
+
+  .about-content h1 {
+    font-size: 36px;
+  }
+
+  .about-section h2 {
+    font-size: 24px;
+  }
+
+  .about-section p,
+  .about-section ul {
+    font-size: 16px;
+  }
+
+  .about-contact p {
+    font-size: 16px;
+  }
+}
