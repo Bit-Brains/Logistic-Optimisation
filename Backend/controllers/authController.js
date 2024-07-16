@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 
 const registerSupplier = async (req, res) => {
   try {
-    const { firstName, lastName, email, phone, password } = req.body;
+    const { firstName, lastName, email, phone, password, latitude, longitude } = req.body;
     const user = await prisma.suppliers.findFirst({
       where: {
         email: email
@@ -22,7 +22,9 @@ const registerSupplier = async (req, res) => {
         lastName: lastName,
         email: email,
         phone: phone,
-        password: password
+        password: password,
+        latitude: latitude,
+        longitude: longitude
       }
     })
     const payload = { id: result.id, firstName: result.firstName, email: result.email }
@@ -39,7 +41,7 @@ const registerSupplier = async (req, res) => {
 
 const registerCustomer = async (req, res) => {
   try {
-    const { firstName, lastName, email, phone, password } = req.body;
+    const { firstName, lastName, email, phone, password, latitude, longitude } = req.body;
     const user = await prisma.customers.findFirst({
       where: {
         email: email
@@ -56,7 +58,9 @@ const registerCustomer = async (req, res) => {
         lastName: lastName,
         email: email,
         phone: phone,
-        password: password
+        password: password,
+        latitude: latitude,
+        longitude: longitude
       }
     });
     const payload = {

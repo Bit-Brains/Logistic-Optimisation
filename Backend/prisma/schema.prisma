@@ -21,6 +21,8 @@ model Suppliers {
     email String @unique
     phone Int
     password String
+    latitude Float
+    longitude Float
     inventories Inventory[]
   }
 
@@ -30,6 +32,8 @@ model Customers {
     lastName String
     email String @unique
     phone Int
+    latitude Float
+    longitude Float
     password String
   }
 
@@ -57,4 +61,4 @@ model Inventory {
     quantity Int
     price Int
     @@unique([supplierId, subpartsId])
-  }
+}
