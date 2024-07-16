@@ -1,8 +1,16 @@
 .item {
   width: 350px;
+  overflow: hidden;
 }
 .item p {
   margin: 6px 0px;
+}
+
+.item img{
+  width: 500px;
+  height : 400px;
+  object-fit: cover;
+  object-position: 10% 100%;
 }
 .item-prices {
   display: flex;
