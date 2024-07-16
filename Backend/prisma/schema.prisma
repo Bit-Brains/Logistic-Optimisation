@@ -4,17 +4,13 @@
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
-require('dotenv').config()
-
 generator client {
   provider = "prisma-client-js"
 }
 
-const db_url = process.env.DATABASE_URL;
-
 datasource db {
   provider = "postgresql"
-  url      = db_url
+  url      = "postgresql://Logistic%20Optimisation_owner:v3RfrcZpo9hA@ep-frosty-block-a599hp4t.us-east-2.aws.neon.tech/LogisticOptimization?sslmode=require"
 }
 
 model Suppliers {
@@ -24,6 +20,9 @@ model Suppliers {
     email String @unique
     phone Int
     password String
+    latitude Float
+    longitude Float
+    inventories Inventory[]
   }
 
 model Customers {
@@ -32,6 +31,33 @@ model Customers {
     lastName String
     email String @unique
     phone Int
+    latitude Float
+    longitude Float
     password String
   }
 
+model Parts {
+    id Int @id @default(autoincrement())
+    Name String
+    Description String
+    subparts SubParts[]
+  }
+
+model SubParts {
+    id Int @id @default(autoincrement())
+    Name String
+    partsId Int
+    parts Parts @relation(fields: [partsId], references: [id])
+    inventories Inventory[]
+  }
+
+model Inventory {
+    id Int @id @default(autoincrement())
+    supplierId Int
+    suppliers Suppliers @relation(fields: [supplierId], references : [id])
+    subpartsId Int
+    subParts SubParts @relation(fields : [subpartsId], references : [id])
+    quantity Int
+    price Int
+    @@unique([supplierId, subpartsId])
+}
