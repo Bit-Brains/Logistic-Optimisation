@@ -6,7 +6,7 @@ const findSupplierForPart = async (partname) => {
   return await prisma.inventory.findMany({
     where: {
       subParts: {
-        name: partname
+        Name: partname
       },
     },
     include: {
