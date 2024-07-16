@@ -21,6 +21,7 @@ model Suppliers {
     email String @unique
     phone Int
     password String
+    inventories Inventory[]
   }
 
 model Customers {
@@ -44,5 +45,16 @@ model SubParts {
     Name String
     partsId Int
     parts Parts @relation(fields: [partsId], references: [id])
+    inventories Inventory[]
   }
 
+model Inventory {
+    id Int @id @default(autoincrement())
+    supplierId Int
+    suppliers Suppliers @relation(fields: [supplierId], references : [id])
+    subpartsId Int
+    subParts SubParts @relation(fields : [subpartsId], references : [id])
+    quantity Int
+    price Int
+    @@unique([supplierId, subpartsId])
+  }
