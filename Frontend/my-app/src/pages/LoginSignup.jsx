@@ -1,4 +1,4 @@
-import React ,{ useState } from 'react'
+import React, { useState } from 'react'
 import Login from '../Components/login/login'
 import Signup from '../Components/signup/Signup'
 
@@ -14,7 +14,7 @@ import Signup from '../Components/signup/Signup'
 // export default LoginSignup
 
 
-const LoginSignup = () => {
+const LoginSignup = ({ handleLogin }) => {
   const [isLogin, setIsLogin] = useState(true);
 
   const toggleAuthMode = () => {
@@ -23,7 +23,7 @@ const LoginSignup = () => {
 
   return (
     <div className="app-container">
-      {isLogin ? <Login toggleAuthMode={toggleAuthMode} /> : <Signup toggleAuthMode={toggleAuthMode} />}
+      {isLogin ? <Login toggleAuthMode={toggleAuthMode} handleToken={handleLogin} /> : <Signup toggleAuthMode={toggleAuthMode} handleToken={handleLogin} />}
     </div>
   );
 };
