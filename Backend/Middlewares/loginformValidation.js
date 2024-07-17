@@ -3,10 +3,12 @@ const zod = require("zod");
 const registerValidation = (req , res , next) =>{
     const schema = zod.object({
         firstName : zod.string(),
-        lastName : zod.stirng(),
+        lastName : zod.string(),
         email : zod.string().email(),
         phone : zod.number(),
-        password : zod.string().min(4)
+        password : zod.string().min(4),
+        latitude : zod.number(),
+        longitude : zod.number()
 
     })
 
@@ -15,7 +17,9 @@ const registerValidation = (req , res , next) =>{
         lastName : req.body.lastName,
         email : req.body.email,
         password : req.body.password,
-        phone: req.body.phone
+        phone: req.body.phone,
+        latitude : req.body.latitude,
+        longitude : req.body.longitude
     })
 
     if(!result.success){
