@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom'
 import './Login.css';
 
-const Login = ({ toggleAuthMode }) => {
+const Login = ({ toggleAuthMode, handleToken }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   // const [phone, setPhone] = useState('');
@@ -20,7 +20,7 @@ const Login = ({ toggleAuthMode }) => {
       if (isCustomer) {
         const response = await axios.post('http://localhost:3001/auth/loginCustomer', loginData);
         console.log(response.data);
-        localStorage.setItem("token", response.data.token);
+        handleToken(response.data.token);
         navigate("/items");
       } else if (isSupplier) {
         const response = await axios.post('http://localhost:3001/auth/loginSupplier', loginData);
