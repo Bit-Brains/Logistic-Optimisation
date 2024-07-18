@@ -3,7 +3,8 @@ const prisma = new PrismaClient();
 const { findSupplierForPart, calculateDistance } = require("../helperFunctions/distance.js")
 
 const optiDistAndCost = async (req, res) => {
-  const { customerId, partName } = req.body;
+  const { partName } = req.body;
+  const customerId = req.userId;
   try {
     const customer = await prisma.customers.findUnique({
       where: {
@@ -13,7 +14,8 @@ const optiDistAndCost = async (req, res) => {
     const suppliers = await findSupplierForPart(partName);
 
     if (suppliers.length == 0) {
-      res.status(200).json({
+      console.log("Supplier Doesnt exists.");
+      return res.status(200).json({
         msg: "No Suppliers Exists"
       })
     }
@@ -45,7 +47,7 @@ const optiDistAndCost = async (req, res) => {
       }
     });
 
-    res.status(200).json({
+    return res.status(200).json({
       nearestSupplier: nearestSupplier,
       cheapestSupplier: cheapestSupplier
     })
