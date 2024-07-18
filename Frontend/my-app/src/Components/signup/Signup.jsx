@@ -11,26 +11,45 @@ const Signup = ({ toggleAuthMode, handleToken }) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [userType, setUserType] = useState('');
+  const [err, setErr] = useState(null);
   const navigate = useNavigate();
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    // Handle signup logic here
-    if (password === confirmPassword) {
-      const loginData = { firstName, lastName, email, phone, password }
-      if (userType === 'customer') {
-        const response = await axios.post('http://localhost:3001/auth/loginCustomer', loginData);
-        console.log(response.data);
-        handleToken(response.data.token);
-        navigate("/items");
-      } else {
-        const response = await axios.post('http://localhost:3001/auth/loginSupplier', loginData);
-        console.log(response.data);
-        localStorage.setItem("token", response.data.token);
-      }
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(async (position) => {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+
+        if (password === confirmPassword) {
+          setPhone(Number(phone));
+          const signupData = { firstName, lastName, email, phone: Number(phone), password, latitude, longitude }
+          console.log(signupData);
+          try {
+            if (userType === 'customer') {
+              const response = await axios.post("http://localhost:3001/auth/registerCustomer", signupData);
+              console.log(response);
+              handleToken(response.data.token);
+              navigate("/items");
+            } else {
+              const response = await axios.post('http://localhost:3001/auth/registerSupplier', signupData);
+              console.log(response.data);
+              // localStorage.setItem("token", response.data.token);
+            }
+          } catch (err) {
+            console.log(err);
+            setErr("Can't Signup Please Try Again Later");
+          }
+        } else {
+          console.error('Passwords do not match');
+        }
+      });
     } else {
-      console.error('Passwords do not match');
+      setErr("Geo Location isn't supported by this browser")
     }
+    // Handle signup logic here
+
   };
 
   return (
