@@ -50,3 +50,10 @@
   justify-content: center;
   display: flex;
 }
+
+.hero-right img {
+  max-width: 500%;  /* Slightly larger than the container's width */
+  max-height: 500%; /* Slightly larger than the container's height */
+  object-fit: contain; /* Maintains aspect ratio and fits the image within the container */
+}
+

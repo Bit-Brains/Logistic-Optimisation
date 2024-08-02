@@ -39,6 +39,21 @@
   flex: 1;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content:center;
   padding-top: 50px;
 }
+.offers-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 50px;
+  box-sizing: border-box; /* Ensures padding is included in the element's total width and height */
+}
+
+.offers-right img {
+  max-width: 100%;  /* Ensures the image width is limited to the container's width */
+  max-height: 100%; /* Ensures the image height is limited to the container's height */
+  object-fit: contain; /* Maintains aspect ratio and fits the image within the container */
+}
+
