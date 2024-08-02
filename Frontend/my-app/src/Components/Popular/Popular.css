@@ -4,7 +4,9 @@
   align-items: center;
   gap: 10px;
   height: 100vh;
+  /* background: linear-gradient(180deg, #f2f3ae, #98b36322 60%); */
 }
+
 .popular h1 {
   color: #171717;
   font-size: 50px;
